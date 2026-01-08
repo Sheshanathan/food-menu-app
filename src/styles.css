@@ -1,103 +1,135 @@
+/* ===== Reset & Body ===== */
 * {
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  background: #0d0d0d; /* dark background */
+  color: #fff;
+  font-family: "Gill Sans", "Arial", sans-serif;
   margin: 0;
-  background: #f4f6f8;
+  padding: 0;
 }
 
+/* ===== Container: Two-Column Layout ===== */
 .container {
-  width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap; /* responsive */
+  position: relative;
 }
 
+/* ===== Card Styling ===== */
 .card {
-  background: white;
-  padding: 25px;
-  width: 320px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  padding: 20px;
+  flex: 1 1 350px;
+  max-width: 400px;
+  position: relative; /* for watermark */
 }
 
-.card h2 {
+/* ===== Bat Watermark ===== */
+.card::before {
+  content: "🦇";
+  position: absolute;
+  font-size: 120px;
+  color: rgba(255, 204, 0, 0.05);
+  top: 20px;
+  left: 20px;
+  pointer-events: none;
+}
+
+/* ===== Headings ===== */
+h1 {
+  color: #ffcc00;
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
+.app-title {
+  position: sticky;
+  top: 0;
+  background: #0d0d0d;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(255, 204, 0, 0.1);
+}
+
+h2, h3 {
+  color: #ffcc00;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* ===== Menu Items ===== */
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #262626;
+  padding: 8px;
   margin-bottom: 12px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background: #ff5722;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #e64a19;
-}
-
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-/* Small link-like button used for secondary actions */
-.link-btn {
-  width: auto;
-  padding: 8px 10px;
-  background: transparent;
-  color: #ff5722;
-  border: 1px solid transparent;
   border-radius: 6px;
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: 600;
-}
-.link-btn:hover { background: rgba(255,87,34,0.06); }
-
-.link {
-  text-align: center;
-  margin-top: 10px;
-  color: #ff5722;
-  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.card button {
-  margin-right: 5px;
-  margin-top: 5px;
+.menu-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 8px;
+  background: #262626;
+  border-radius: 6px;
 }
+
+.menu-item:hover {
+  background: #333;
+  transform: scale(1.02);
+}
+
+/* ===== Cart Items ===== */
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #262626;
+  padding: 8px;
   margin-bottom: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
+.cart-item:hover {
+  background: #333;
+  transform: scale(1.01);
+}
+
+.cart-item-added {
+  animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateX(-10px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== Cart Controls ===== */
 .cart-controls {
   display: flex;
   align-items: center;
-}
-
-.cart-controls button {
-  padding: 4px 8px;
-  margin: 0 3px;
-  font-size: 14px;
-  width: auto;
 }
 
 .cart-controls span {
@@ -106,105 +138,190 @@ button:disabled {
   font-weight: bold;
 }
 
-.remove-btn {
-  background: #ccc;
-  color: black;
-}
-
-/* General Reset */
-* {
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
-}
-
-body {
-  margin: 0;
-  background: #0d0d0d; /* dark background */
-  color: #fff;
-}
-
-/* Container & Card */
-.container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
-}
-
-.card {
-  background: #1a1a1a;
-  padding: 25px;
-  width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #000;
-}
-
-/* Headings */
-h2, h3 {
-  color: #ffcc00; /* batman yellow */
-  text-align: center;
-}
-
-/* Menu Items */
-.menu-item, .cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  padding: 8px;
-  border-radius: 6px;
-  background: #262626;
-}
-
-/* Buttons */
+/* ===== Buttons ===== */
 button {
   padding: 4px 8px;
   margin: 0 3px;
   font-size: 14px;
-  border: none;
+  border: 2px solid #ffcc00;
   border-radius: 4px;
+  background: #1a1a1a;
+  color: #ffcc00;
   cursor: pointer;
-  background: #ffcc00;
-  color: #0d0d0d;
+  transition: all 0.2s ease;
 }
 
-button:hover {
-  background: #e6b800;
+button:hover:enabled {
+  background: #ffcc00;
+  color: #0d0d0d;
+  box-shadow: 0 0 8px #ffcc00;
+  animation: pulse 0.5s;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
 }
 
 button:disabled {
   background: #555;
+  border-color: #888;
+  color: #888;
   cursor: not-allowed;
 }
 
-/* Cart controls */
-.cart-controls {
-  display: flex;
-  align-items: center;
-}
-
-.cart-controls span {
-  min-width: 20px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Remove Button */
+/* ===== Remove Button ===== */
 .remove-btn {
   background: #ff3300;
   color: #fff;
+  border-color: #ff3300;
 }
 
-/* Input */
+.remove-btn:hover {
+  background: #ff4d4d;
+  box-shadow: 0 0 8px #ff4d4d;
+}
+
+/* ===== Total Amount ===== */
+.total-amount {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #262626;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.total-amount h3 {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+/* ===== Input ===== */
 input {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 0;
   border-radius: 6px;
   border: none;
   background: #333;
   color: #fff;
+  font-size: 14px;
 }
 
+/* ===== Place Order Button ===== */
+.place-order-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #ffcc00;
+  background: #1a1a1a;
+  color: #ffcc00;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.place-order-button:hover:enabled {
+  background: #ffcc00;
+  color: #0d0d0d;
+  box-shadow: 0 0 8px #ffcc00;
+}
+
+.place-order-button:disabled {
+  background: #555;
+  border-color: #888;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* ===== Login Card ===== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px);
+  padding: 20px;
+}
+
+.login-card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  min-height: auto;
+}
+
+/* Heading */
+.login-card h2 {
+  color: #ffcc00;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+/* Input Fields */
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 3px;
+  border-radius: 6px;
+  border: 2px solid #333;
+  background: #333;
+  color: #fff;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: #ffcc00;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.2);
+}
+
+/* Buttons (Login & Signup) */
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 3px;
+  border-radius: 6px;
+  border: 2px solid #ffcc00;
+  background: #1a1a1a;
+  color: #ffcc00;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.login-card button:hover {
+  background: #ffcc00;
+  color: #0d0d0d;
+  box-shadow: 0 0 8px #ffcc00;
+}
+
+.login-card button:disabled {
+  background: #555;
+  border-color: #888;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* ===== Responsive ===== */
+@media(max-width: 800px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

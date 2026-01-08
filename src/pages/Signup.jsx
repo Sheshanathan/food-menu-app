@@ -19,12 +19,16 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} />
-      <button onClick={signup}>Signup</button>
-    </div>
+    <>
+      <h1 className="app-title">Online Kitchen</h1>
+      <div className="login-card">
+        <h2>🦇 Signup</h2>
+        <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
+        <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} />
+        <button onClick={signup}>Signup</button>
+        <button onClick={() => navigate("/login")}>Back to Login</button>
+      </div>
+    </>
   );
 }
 

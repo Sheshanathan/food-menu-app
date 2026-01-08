@@ -96,18 +96,19 @@ function Menu() {
   };
 
   return (
-    <div className="container">
+    <>
+      <h1 className="app-title">Online Kitchen</h1>
+      <div className="container">
       <div className="card">
 
         {/* MENU SECTION */}
         <h2>Food Menu 🍽️</h2>
         {foods.map(food => (
-          <div key={food.id} style={{ marginBottom: "10px" }}>
-            <strong>{food.name}</strong> - ₹{food.price}
-            <button
-              style={{ marginLeft: "10px" }}
-              onClick={() => addToCart(food)}
-            >
+          <div key={food.id} className="menu-item-row">
+            <div>
+              <strong>{food.name}</strong> - ₹{food.price}
+            </div>
+            <button onClick={() => addToCart(food)}>
               Add
             </button>
           </div>
@@ -142,8 +143,9 @@ function Menu() {
   </div>
 ))}
 
-
-        <h3>Total Amount: ₹{totalAmount}</h3>
+        <div className="total-amount">
+          <h3>Total Amount: ₹{totalAmount}</h3>
+        </div>
 
         <input
           placeholder="Enter delivery location"
@@ -152,7 +154,7 @@ function Menu() {
         />
 
         <button
-          style={{ marginTop: "10px" }}
+          className="place-order-button"
           onClick={placeOrder}
           disabled={!location || cart.length === 0}
         >
@@ -160,7 +162,8 @@ function Menu() {
         </button>
 
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
