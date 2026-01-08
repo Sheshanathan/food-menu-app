@@ -24,7 +24,7 @@ function Login() {
       <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
       <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} />
       <button onClick={login}>Login</button>
-      <p onClick={() => navigate("/signup")}>Create account</p>
+      <button type="button" className="link-btn" onClick={() => navigate("/signup")}>Create account</button>
     </div>
   );
 }

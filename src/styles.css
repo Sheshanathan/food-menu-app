@@ -51,6 +51,20 @@ button:hover {
   background: #e64a19;
 }
 
+/* Small link-like button used for secondary actions */
+.link-btn {
+  width: auto;
+  padding: 8px 10px;
+  background: transparent;
+  color: #ff5722;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.link-btn:hover { background: rgba(255,87,34,0.06); }
+
 .link {
   text-align: center;
   margin-top: 10px;
