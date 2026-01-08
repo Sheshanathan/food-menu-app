@@ -10,57 +10,36 @@ function Menu() {
     { id: 4, name: "Chicken Fried Rice", price: 150 },
   ];
 
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
   const [location, setLocation] = useState("");
 
-  // ADD TO CART
-  const addToCart = (food) => {
-    const existingItem = cart.find(item => item.id === food.id);
+  const addItem = (food) => {
+    setCart(prev => ({
+      ...prev,
+      [food.id]: prev[food.id]
+        ? { ...prev[food.id], quantity: prev[food.id].quantity + 1 }
+        : { ...food, quantity: 1 }
+    }));
+  };
 
-    if (existingItem) {
-      setCart(
-        cart.map(item =>
-          item.id === food.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
+  const removeItem = (id) => {
+    const updatedCart = { ...cart };
+    delete updatedCart[id];
+    setCart(updatedCart);
+  };
+
+  const decreaseItem = (id) => {
+    if (cart[id].quantity === 1) {
+      removeItem(id);
     } else {
-      setCart([...cart, { ...food, quantity: 1 }]);
+      setCart(prev => ({
+        ...prev,
+        [id]: { ...prev[id], quantity: prev[id].quantity - 1 }
+      }));
     }
   };
 
-  // INCREASE QUANTITY
-  const increaseQty = (id) => {
-    setCart(
-      cart.map(item =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
-
-  // DECREASE QUANTITY
-  const decreaseQty = (id) => {
-    setCart(
-      cart
-        .map(item =>
-          item.id === id
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter(item => item.quantity > 0)
-    );
-  };
-
-  // REMOVE ITEM
-  const removeItem = (id) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
-  // TOTAL AMOUNT
-  const totalAmount = cart.reduce(
+  const totalAmount = Object.values(cart).reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
@@ -70,34 +49,46 @@ function Menu() {
       <div className="card">
         <h2>Food Menu 🍽️</h2>
 
-        {foods.map(food => (
-          <div key={food.id} style={{ marginBottom: "10px" }}>
-            <strong>{food.name}</strong> - ₹{food.price}
-            <button
-              style={{ marginLeft: "10px" }}
-              onClick={() => addToCart(food)}
+        {foods.map(food => {
+          const item = cart[food.id];
+
+          return (
+            <div
+              key={food.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "12px"
+              }}
             >
-              Add
-            </button>
-          </div>
-        ))}
+              <div>
+                <strong>{food.name}</strong>
+                <br />
+                ₹{food.price}
+              </div>
+
+              <div>
+                {!item ? (
+                  <button onClick={() => addItem(food)}>Add</button>
+                ) : (
+                  <>
+                    <button onClick={() => decreaseItem(food.id)}>-</button>
+                    <span style={{ margin: "0 8px" }}>
+                      {item.quantity}
+                    </span>
+                    <button onClick={() => addItem(food)}>+</button>
+                    <button onClick={() => removeItem(food.id)}>
+                      Remove
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })}
 
         <hr />
-
-        <h3>Cart 🛒</h3>
-
-        {cart.length === 0 && <p>No items in cart</p>}
-
-        {cart.map(item => (
-          <div key={item.id} style={{ marginBottom: "10px" }}>
-            <strong>{item.name}</strong> - ₹{item.price} × {item.quantity}
-            <br />
-
-            <button onClick={() => decreaseQty(item.id)}>-</button>
-            <button onClick={() => increaseQty(item.id)}>+</button>
-            <button onClick={() => removeItem(item.id)}>Remove</button>
-          </div>
-        ))}
 
         <h3>Total Amount: ₹{totalAmount}</h3>
 
@@ -116,3 +107,5 @@ function Menu() {
 }
 
 export default Menu;
+
+ 
