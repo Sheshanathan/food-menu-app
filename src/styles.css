@@ -51,6 +51,11 @@ button:hover {
   background: #e64a19;
 }
 
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 /* Small link-like button used for secondary actions */
 .link-btn {
   width: auto;
@@ -76,5 +81,130 @@ button:hover {
   margin-right: 5px;
   margin-top: 5px;
 }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
+.cart-controls {
+  display: flex;
+  align-items: center;
+}
+
+.cart-controls button {
+  padding: 4px 8px;
+  margin: 0 3px;
+  font-size: 14px;
+  width: auto;
+}
+
+.cart-controls span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.remove-btn {
+  background: #ccc;
+  color: black;
+}
+
+/* General Reset */
+* {
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0d0d0d; /* dark background */
+  color: #fff;
+}
+
+/* Container & Card */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 25px;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+}
+
+/* Headings */
+h2, h3 {
+  color: #ffcc00; /* batman yellow */
+  text-align: center;
+}
+
+/* Menu Items */
+.menu-item, .cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #262626;
+}
+
+/* Buttons */
+button {
+  padding: 4px 8px;
+  margin: 0 3px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #ffcc00;
+  color: #0d0d0d;
+}
+
+button:hover {
+  background: #e6b800;
+}
+
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+/* Cart controls */
+.cart-controls {
+  display: flex;
+  align-items: center;
+}
+
+.cart-controls span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Remove Button */
+.remove-btn {
+  background: #ff3300;
+  color: #fff;
+}
+
+/* Input */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #333;
+  color: #fff;
+}
 
