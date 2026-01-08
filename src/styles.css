@@ -71,7 +71,10 @@ button:hover {
   color: #ff5722;
   cursor: pointer;
 }
+
 .card button {
+  margin-right: 5px;
   margin-top: 5px;
 }
+
 
