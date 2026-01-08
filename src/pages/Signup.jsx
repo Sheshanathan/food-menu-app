@@ -1,34 +1,30 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: connect to auth/signup
-    console.log('Signup submit', { name, email, password });
+  const signup = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/menu");
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
-    <div className="page signup-page">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name
-          <input value={name} onChange={(e) => setName(e.target.value)} required />
-        </label>
-        <label>
-          Email
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </label>
-        <label>
-          Password
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </label>
-        <button type="submit">Create account</button>
-      </form>
+    <div>
+      <h2>Signup</h2>
+      <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} />
+      <button onClick={signup}>Signup</button>
     </div>
   );
 }
+
+export default Signup;
